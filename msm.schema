@@ -1,0 +1,21 @@
+model Matriz{
+    id
+    nome
+    cnpj unico
+    endereço
+    email
+    telefone
+    filiais Filial[]
+}
+
+model Filial{
+    id
+    nome
+    cnpj
+    fk
+}
+
+get -> pegar dados
+post -> gravar dados
+put -> atualizar dados
+delete -> deletar dados

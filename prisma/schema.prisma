@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model matriz{
+  id String @id @default(uuid())
+  nome String
+  cnpj String @unique
+  email String
+  endereco String?
+  telefone String
+  filiais Filial[]
+}
+
+model Filial{
+  id String @id @default(uuid())
+  nome String
+  cnpj String @unique
+  endereco String
+  telefone String
+  email String
+  matrizId String
+  matriz matriz @relation(fields: [matrizId], references: [id])
+}
