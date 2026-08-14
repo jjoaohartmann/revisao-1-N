@@ -9,12 +9,13 @@ app.use(express.json())
 app.use(cors())
 
 app.post("/registro", async (req, res) =>{
-    const {nome, cnpj, email, telefone} = req.body
+    const {nome, cnpj, endereco, email, telefone} = req.body
 
     const novaMatriz = await prisma.matriz.create({
         data:{
             nome,
             cnpj,
+            endereco,
             email,
             telefone
         }
@@ -23,12 +24,15 @@ app.post("/registro", async (req, res) =>{
 })
 
 app.post("/registro/filial", async (req, res) => {
-    const {nome, cnpj, matrizId} = req.body
+    const {nome, cnpj, endereco, telefone, email, matrizId} = req.body
 
     const novaFilial = await prisma.filial.create({
         data:{
             nome,
             cnpj,
+            endereco,
+            telefone,
+            email,
             matrizId,
         }
     })
